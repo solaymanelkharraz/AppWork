@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mailroom — Template Lab",
-  description: "Sanitize sent email source and reverse-engineer reusable templates."
+  title: "Mailroom — Floor Utilities",
+  description: "Sanitize sent email source and generate seed contact matrices."
 };
 
 export default function RootLayout({

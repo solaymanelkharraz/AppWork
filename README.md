@@ -1,6 +1,6 @@
-# Mailroom Template Lab
+# Mailroom Floor Utilities
 
-A browser-based email source sanitizer and deliverability notes workspace built with Next.js App Router, TypeScript, and Tailwind CSS.
+A browser-based email source sanitizer and 8-contact matrix generator built with Next.js App Router, TypeScript, and Tailwind CSS.
 
 ## Getting started
 
@@ -13,12 +13,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Features
 
-- Parse RFC 5322 headers, retain message/template headers, and extract transport, delivery, and authentication metadata into an audit view.
-- Infer reverse tags for sender, recipient, reply-to, subject, and observed routing values. Mapping is deterministic and based only on values found in the supplied message.
-- Inspect and filter extracted headers, copy or download the recovered template, and import `.eml` or text sources.
-- Keep operational notes, maintain a local readiness checklist, and generate the 2-user × 4-domain contact matrix.
+- Remove post-send transport, routing, delivery, and authentication headers into a dedicated `Stripped Elements` audit list.
+- Drop common webmail delivery wrappers (`Created at`, delivery duration, SPF/DKIM/DMARC status, and export controls) from the recovered source while retaining them in the audit list.
+- Replace static timestamps in retained headers and split HTML content into independently viewable and copyable Header, Body, and Footer sections.
+- Map known sender, recipient, bounce, and unsubscribe-link domains and recipient/tracking identifiers where their values are present in the source.
+- Recover template header tokens and map values inferred from sender, recipient, return-path, and observed routing headers.
+- Recognize the supported random, date, dynamic, user, domain, infrastructure, and header tag forms listed in `TAG_DICTIONARY` in `lib/email-engine.ts`.
+- Cross-multiply two usernames and four domains, de-duplicate the eight contact combinations, and copy the result in one action.
 
-The parser and ledger run in the browser. Notes, checklist status, and contact inputs are saved to local browser storage and are not synchronized to a server.
+The utilities run in the browser. Email source is not uploaded or synchronized. Values that cannot be inferred from the source remain unchanged rather than being guessed.
 
 ## Validation
 
